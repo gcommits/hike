@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        
+    <div>
+        <form action="/register" method="post">
+            <br/>
+            <h2>Register</h2>
+            {% with messages = get_flashed_messages(category_filter=['register']) %}
+                {% if messages %}
+                <div>
+                    <strong>Error!</strong>
+                        {% for message in messages %}
+                        <p>{{message}}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+            <div>
+                <input type="text" name="firstName" placeholder="First Name">
+                <label for="firstName">First Name:</label>
+            </div>
+            <div>
+                <input type="text" name="lastName" placeholder="Last Name">
+                <label for="lastName">Last Name:</label>
+            </div>
+            <div>
+                <input type="text" name="email" placeholder="Email">
+                <label for="email">Email:</label>
+            </div>
+            <div>
+                <input type="password" name="password" placeholder="Password">
+                <label for="password">Password:</label>
+            </div>
+            <div>
+                <input type="password" name="confirm" placeholder="Confirm Password">
+                <label for="confirm">Confirm Password:</label>
+            </div>
+            <input type="submit" value="Register">
+        </form><br/>
+        <a href="/">
+            <input type="button" value="Go Back"></a>
+        
+    </div>
+</body>
+</html>
