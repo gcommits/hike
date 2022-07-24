@@ -29,6 +29,10 @@ def register():
 
     return redirect('/dashboard')
 
+@app.route('/login')
+def loginUser():
+    return render_template('index.html')
+
 @app.route('/login',methods=['POST'])
 def login():
     user = User.getEmail(request.form)
@@ -49,7 +53,7 @@ def dashboard():
     data ={
         'id': session['user_id']
     }
-    return render_template("home.html", user=User.getOne(data), trail=Trail.getAll())
+    return render_template("home.html", user=User.getOne(data), trail=Trail.getAll()) #need to know what the html file will be for homepage after logging in.
 
 @app.route('/logout')
 def logout():
