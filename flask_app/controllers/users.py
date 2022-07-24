@@ -49,7 +49,7 @@ def dashboard():
     data ={
         'id': session['user_id']
     }
-    return render_template("layout.html", user=User.getOne(data), trail=Trail.getAll())
+    return render_template("home.html", user=User.getOne(data), trail=Trail.getAll())
 
 @app.route('/logout')
 def logout():
