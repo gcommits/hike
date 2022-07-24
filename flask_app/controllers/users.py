@@ -1,4 +1,4 @@
-from flask import render_template,redirect,session,request, flash
+from flask import render_template,redirect,session,request, flash, url_for, abort
 from flask_app import app
 from flask_app.models.user import User
 from flask_app.models.trail import Trail
@@ -6,8 +6,8 @@ from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def home():
+    return render_template('home.html')
 
 @app.route('/register')
 def registerUser():
@@ -49,7 +49,7 @@ def dashboard():
     data ={
         'id': session['user_id']
     }
-    return render_template("layout.html", user=User.getOne(data), trail=Trail.getAll())
+    return render_template("dashboard.html", user=User.getOne(data), trail=Trail.getAll())
 
 @app.route('/logout')
 def logout():
