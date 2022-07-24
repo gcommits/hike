@@ -5,16 +5,16 @@ from flask_app.models.user import User
 
 
 @app.route('/new/trail')
-def newtrail():
+def new_trail():
     if 'user_id' not in session:
         return redirect('/logout')
     user_data = {
         "id":session['user_id']
     }
-    return render_template("newtrail.html",user=User.getOne(user_data))
+    return render_template("new_trail.html",user=User.getOne(user_data))
 
 @app.route('/create/trail',methods=['POST'])
-def createtrail():
+def create_trail():
     if 'user_id' not in session:
         return redirect('/logout')
     if not Trail.validate(request.form):
@@ -36,7 +36,7 @@ def createtrail():
     return redirect('/dashboard')
 
 @app.route('/edit/trail/<int:id>')
-def edittrail(id):
+def edit_trail(id):
     if 'user_id' not in session:
         return redirect('/logout')
     data = {
@@ -46,10 +46,10 @@ def edittrail(id):
         "id":session['user_id']
     }
     print(Trail.getOne(data).name)
-    return render_template("edittrail.html",edit=Trail.getOne(data),user=User.getOne(user_data))
+    return render_template("edit_trail.html",edit=Trail.getOne(data),user=User.getOne(user_data))
 
 @app.route('/update/trail',methods=['POST'])
-def updatetrail():
+def update_trail():
     if 'user_id' not in session:
         return redirect('/logout')
     if not Trail.validate(request.form):
@@ -71,7 +71,7 @@ def updatetrail():
     return redirect('/dashboard')
 
 @app.route('/trail/<int:id>')
-def showtrail(id):
+def show_trail(id):
     if 'user_id' not in session:
         return redirect('/logout')
     data = {
@@ -80,10 +80,10 @@ def showtrail(id):
     user_data = {
         "id":session['user_id']
     }
-    return render_template("showtrail.html",trail=Trail.getOne(data),user=User.getOne(user_data))
+    return render_template("show_trail.html",trail=Trail.getOne(data),user=User.getOne(user_data))
 
 @app.route('/destroy/trail/<int:id>')
-def deletetrail(id):
+def delete_trail(id):
     if 'user_id' not in session:
         return redirect('/logout')
     data = {

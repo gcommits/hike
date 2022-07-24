@@ -1,52 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-        
-    <div>
-        <form action="/register" method="post">
-            <br/>
-            <h2>Register</h2>
-            {% with messages = get_flashed_messages(category_filter=['register']) %}
-                {% if messages %}
+{% extends "layout.html" %}
+{% block content %}
+<div class="row mt-5 d-flex justify-content-center">
+    <div class="col-8 mt-5">
+        <h2>Register</h2>
+        {% with messages = get_flashed_messages(category_filter=['register']) %}
+            {% if messages %}
                 <div>
                     <strong>Error!</strong>
                         {% for message in messages %}
                         <p>{{message}}</p>
                         {% endfor %}
                 </div>
-                {% endif %}
-            {% endwith %}
-            <div>
-                <label for="firstName">First Name:</label>
-                <input type="text" name="firstName" placeholder="First Name">
+            {% endif %}
+        {% endwith %}
+        <form action="/register" method="POST">
+            <div class="mb-3">
+                <label for="firstname" class="form-label">First Name:</label>
+                <input type="text" class="form-control" id="firstName">
             </div>
-            <div>
-                <label for="lastName">Last Name:</label>
-                <input type="text" name="lastName" placeholder="Last Name">
+            <div class="mb-3">
+                <label for="lastname" class="form-label">Last Name:</label>
+                <input type="text" class="form-control" id="lastName">
             </div>
-            <div>
-                <label for="email">Email:</label>
-                <input type="text" name="email" placeholder="Email">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
             </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" name="password" placeholder="Password">
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password">
             </div>
-            <div>
-                <label for="confirm">Confirm Password:</label>
-                <input type="password" name="confirm" placeholder="Confirm Password">
+            <div class="mb-3">
+                <label for="confirm_password" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm_password">
             </div>
-            <input type="submit" value="Register">
-        </form><br/>
-        <a href="/">
-            <input type="button" value="Go Back"></a>
-        
-    </div>
-</body>
-</html>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+</div>
+{% endblock content %} 
