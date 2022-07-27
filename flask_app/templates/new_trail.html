@@ -1,6 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
-        <form action="/create/trail" method="post">
+<div class="row mt-5">
+    <div class="col-4">
+         <form action="/create/trail" method="post">
             <label>Image URL:
                 <input type="text" name="img">
             </label>
@@ -41,4 +43,7 @@
             </label>
             <input type="submit" value="Add Hike">
         </form>
+    </div>
+</div>
+       
 {% endblock content %}

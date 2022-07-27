@@ -1,38 +1,43 @@
 {% extends "layout.html" %}
     {% block content %}
-        <input type="hidden" name="id" value="{{trail.id}}">
-        <label>Image URL:
-            <p>{{trail.img}}</p>
-        </label>
-        <label>Trail Name:
-            <p>{{trail.name}}</p>
-        </label>
-        <label>Location:
-            <p>{{trail.location}}</p>
-        </label>
-        <label>Difficulty:
-            <p>{{trail.difficulty}}</p>
-        </label>
-        <label>Rating:
-            <p>{{trail.rating}}</p>
-        </label>
-        <label>Date Completed:
-            <p>{{trail.dateCompleted.strftime('%Y-%m-%d')}}</p>
-        </label>
-        <label>Elevation Gain:
-            <p>{{trail.elevationGain}}</p>
-        </label>
-        <label>Length:
-            <p>{{trail.length}}</p>
-        </label>
-        <label>Route Type:
-            <p>{{trail.routeType}}</p>
-        </label>
-        <label>Comments:
-            <p>{{trail.comments}}</p>
-        </label>
-        {% if trail.user_id == session.user_id %}
-        <td><a href="/edit/trail/{{trail.id}}">Edit this Trail</a></td>
-        <td><a href="/destroy/trail/{{trail.id}}">Remove Trail</a></td>
-        {% endif %}
+    <div class="row mt-5">
+        <div class="col-4">
+            <input type="hidden" name="id" value="{{trail.id}}">
+                    <label>Image URL:
+                        <p>{{trail.img}}</p>
+                    </label>
+                    <label>Trail Name:
+                        <p>{{trail.name}}</p>
+                    </label>
+                    <label>Location:
+                        <p>{{trail.location}}</p>
+                    </label>
+                    <label>Difficulty:
+                        <p>{{trail.difficulty}}</p>
+                    </label>
+                    <label>Rating:
+                        <p>{{trail.rating}}</p>
+                    </label>
+                    <label>Date Completed:
+                        <p>{{trail.dateCompleted.strftime('%Y-%m-%d')}}</p>
+                    </label>
+                    <label>Elevation Gain:
+                        <p>{{trail.elevationGain}}</p>
+                    </label>
+                    <label>Length:
+                        <p>{{trail.length}}</p>
+                    </label>
+                    <label>Route Type:
+                        <p>{{trail.routeType}}</p>
+                    </label>
+                    <label>Comments:
+                        <p>{{trail.comments}}</p>
+                    </label>
+                    {% if trail.user_id == session.user_id %}
+                    <td><a href="/edit/trail/{{trail.id}}">Edit this Trail</a></td>
+                    <td><a href="/destroy/trail/{{trail.id}}">Remove Trail</a></td>
+                    {% endif %}
+        </div>
+    </div>
+       
     {% endblock %}

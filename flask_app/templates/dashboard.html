@@ -1,18 +1,23 @@
 {% extends "layout.html" %}
 {% block content %}
-<h3>All Hikes</h3>
-<table>
-    {% for hike in trail %}
-    <tr>
-        <td>{{ hike.img }}</td>
-        <td>{{ hike.name }}</td>
-        <td><a href="/trail/{{hike.id}}">View</a></td>
-        {% if hike.user_id == session.user_id %}
-        <td><a href="/edit/trail/{{hike.id}}">Update</a></td>
-        <td><a href="/destroy/trail/{{hike.id}}">Delete</a></td>
-        {% endif %}
-    </tr>
-    {% endfor %}
-</table>
+<div class="row mt-5">
+    <div class="col-4">
+        <h3>All Hikes</h3>
+        <table>
+            {% for hike in trail %}
+            <tr>
+                <td>{{ hike.img }}</td>
+                <td>{{ hike.name }}</td>
+                <td><a href="/trail/{{hike.id}}">View</a></td>
+                {% if hike.user_id == session.user_id %}
+                <td><a href="/edit/trail/{{hike.id}}">Update</a></td>
+                <td><a href="/destroy/trail/{{hike.id}}">Delete</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
 {% endblock %}
 
