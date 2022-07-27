@@ -39,63 +39,39 @@
         </div>
     </nav>
     <main role="main" class="container">
-        <div class="row">
-            <div class="col-md-8">
-                {% with messages = get_flashed_messages(with_categories=true ) %}
-                    {% if messages %}
-                        {% for category, message in messages %}
-                        <div class="alert alert-{{ category }}">
-                            {{ message }}
-                        </div>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-                {% block content %}{% endblock %}
+        <h2>Welcome {{user.firstName}}</h2>
+        <h1>Hiking Database</h1>
+            <div class="row">
+                <div class="col-md-8">
+                    {% with messages = get_flashed_messages(with_categories=true ) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    {% block content %}{% endblock %}
+                </div>
             </div>
-        </div>
+            <div>
+                <h3>All Hikes</h3>
+                <table>
+                    {% for hike in trail %}
+                    <tr>
+                        <td>{{ hike.img }}</td>
+                        <td>{{ hike.name }}</td>
+                        <td><a href="/trail/{{hike.id}}">View</a></td>
+                        {% if hike.user_id == session.user_id %}
+                        <td><a href="/edit/trail/{{hike.id}}">Update</a></td>
+                        <td><a href="/destroy/trail/{{hike.id}}">Delete</a></td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
     </main>
-        <form action="/create/trail" method="post">
-            <label>Image URL:
-                <input type="image">
-            </label>
-            <label>Trail Name:
-                <input type="text">
-            </label>
-            <label>Location:
-                <input type="text">
-            </label>
-            <label>Difficulty:
-                <select name="difficulty">
-                    <option value="Easy">Easy</option>
-                    <option value="Moderate">Moderate</option>
-                    <option value="Hard">Hard</option>
-                </select>
-            </label>
-            <label>Rating:
-                <input type="number" name="rating" min="1" max="10">
-            </label>
-            <label>Date Completed:
-                <input type="date" name="dateCompleted">
-            </label>
-            <label>Elevation Gain:
-                <input type="number" name="elevationGain">
-            </label>
-            <label>Length:
-                <input type="number" name="length">
-            </label>
-            <label>Route Type:
-                <select name="routeType">
-                    <option value="pointToPoint">Point-to-point</option>
-                    <option value="outAndBack">Out-and-back</option>
-                    <option value="loop">Loop</option>
-                </select>
-            </label>
-            <label>Comments:
-                <textarea name="comments" cols="30" rows="10"></textarea>
-            </label>
-            <input type="submit" value="Add Hike">
-        </form>
-    
 
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>

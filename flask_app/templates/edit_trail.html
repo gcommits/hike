@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Trail</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="/dashboard" class="btn">Back to Dashboard</a>
+        <a href="/logout" class="btn">Logout</a>
+    </nav>
+    <h1>Edit {{edit.name}}</h1>
+    <form action="/update/trail" method="post">
+        {% with messages = get_flashed_messages() %}     
+            {% if messages %}                            
+                {% for message in messages %}            
+                    <p>{{message}}</p>                   
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <input type="hidden" name="id" value="{{edit.id}}">
+        <label>Image URL:
+            <input type="image" name="img" alt="Trail Image" value="{{edit.img}}">
+        </label>
+        <label>Trail Name:
+            <br><input type="text" name="name" value="{{edit.name}}">
+        </label>
+        <label>Location:
+            <br><input type="text" name="location" value="{{edit.location}}">
+        </label>
+        <label>Difficulty:
+            <select name="difficulty" value="{{edit.difficulty}}">
+                <option value="easy">Easy</option>
+                <option value="moderate">Moderate</option>
+                <option value="hard">Hard</option>
+            </select>
+        </label>
+        <label>Rating:
+            <input type="number" name="rating" min="1" max="10" value="{{edit.rating}}">
+        </label>
+        <label>Date Completed:
+            <br><input type="date" name="dateCompleted" value="{{edit.dateCompleted.strftime('%Y-%m-%d')}}">
+        </label>
+        <label>Elevation Gain:
+            <input type="number" name="elevationGain" value="{{edit.elevationGain}}">
+        </label>
+        <label>Length:
+            <input type="number" name="length" value="{{edit.length}}">
+        </label>
+        <label>Route Type:
+            <select name="routeType">
+                <option value="pointToPoint">Point-to-point</option>
+                <option value="outAndBack">Out-and-back</option>
+                <option value="loop">Loop</option>
+            </select>
+        </label>
+        <label>Comments:
+            <br><textarea name="comments" cols="30" rows="10">{{edit.comments}}</textarea>
+        </label>
+        <input type="submit" value="Update" class="btn">
+    </form>
+</body>
+</html>

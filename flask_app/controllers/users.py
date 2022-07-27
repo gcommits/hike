@@ -53,7 +53,7 @@ def dashboard():
     data ={
         'id': session['user_id']
     }
-    return render_template("home.html", user=User.getOne(data), trail=Trail.getAll()) #need to know what the html file will be for homepage after logging in.
+    return render_template("dashboard.html", user=User.getOne(data), trail=Trail.getAll()) #need to know what the html file will be for homepage after logging in.
 
 @app.route('/logout')
 def logout():
