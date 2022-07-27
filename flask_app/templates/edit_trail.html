@@ -1,29 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Trail</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
-</head>
-<body>
-    <nav>
-        <a href="/dashboard" class="btn">Back to Dashboard</a>
-        <a href="/logout" class="btn">Logout</a>
-    </nav>
+{% extends "layout.html" %}
+{% block content %}
     <h1>Edit {{edit.name}}</h1>
     <form action="/update/trail" method="post">
-        {% with messages = get_flashed_messages() %}     
-            {% if messages %}                            
-                {% for message in messages %}            
-                    <p>{{message}}</p>                   
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
         <input type="hidden" name="id" value="{{edit.id}}">
         <label>Image URL:
-            <input type="image" name="img" alt="Trail Image" value="{{edit.img}}">
+            <input type="text" name="img" alt="Trail Image" value="{{edit.img}}">
         </label>
         <label>Trail Name:
             <br><input type="text" name="name" value="{{edit.name}}">
@@ -62,5 +43,4 @@
         </label>
         <input type="submit" value="Update" class="btn">
     </form>
-</body>
-</html>
+    {% endblock %}

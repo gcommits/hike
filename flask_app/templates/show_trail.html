@@ -1,94 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Trail</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light text-black bg-custom px-3 fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Hiking App</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                <a class="nav-link nav-item nav-link" aria-current="page" href="{{ url_for('home') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link nav-item nav-link" href="#">About</a>
-                </li>
-                </ul>
-            <div class="navbar-nav d-flex">
-                    <a href="{{ url_for('new_trail') }}" class="nav-item nav-link">New Trail</a>
-                    <a href="{{ url_for('login') }}" class="nav-item nav-link">Login</a>
-                    <a href="{{ url_for('register') }}" class="nav-item nav-link">Register</a>
-            </div>
-        </div>
-        </div>
-    </nav>
-    <main role="main" class="container">
-        <div class="row">
-            <div class="col-md-8">
-                {% with messages = get_flashed_messages(with_categories=true ) %}
-                    {% if messages %}
-                        {% for category, message in messages %}
-                        <div class="alert alert-{{ category }}">
-                            {{ message }}
-                        </div>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
-                {% block content %}{% endblock %}
-            </div>
-        </div>
-    </main>
+{% extends "layout.html" %}
+    {% block content %}
         <input type="hidden" name="id" value="{{trail.id}}">
         <label>Image URL:
-            <input type="image" name="img" alt="Trail Image" value="{{edit.img}}">
+            <p>{{trail.img}}</p>
         </label>
         <label>Trail Name:
-            <br><input type="text" name="name" value="{{edit.name}}">
+            <p>{{trail.name}}</p>
         </label>
         <label>Location:
-            <br><input type="text" name="location" value="{{edit.location}}">
+            <p>{{trail.location}}</p>
         </label>
         <label>Difficulty:
-            <select name="difficulty" value="{{edit.difficulty}}">
-                <option value="easy">Easy</option>
-                <option value="moderate">Moderate</option>
-                <option value="hard">Hard</option>
-            </select>
+            <p>{{trail.difficulty}}</p>
         </label>
         <label>Rating:
-            <input type="number" name="rating" min="1" max="10" value="{{edit.rating}}">
+            <p>{{trail.rating}}</p>
         </label>
         <label>Date Completed:
-            <br><input type="date" name="dateCompleted" value="{{edit.dateCompleted.strftime('%Y-%m-%d')}}">
+            <p>{{trail.dateCompleted.strftime('%Y-%m-%d')}}</p>
         </label>
         <label>Elevation Gain:
-            <input type="number" name="elevationGain" value="{{edit.elevationGain}}">
+            <p>{{trail.elevationGain}}</p>
         </label>
         <label>Length:
-            <input type="number" name="length" value="{{edit.length}}">
+            <p>{{trail.length}}</p>
         </label>
         <label>Route Type:
-            <select name="routeType">
-                <option value="pointToPoint">Point-to-point</option>
-                <option value="outAndBack">Out-and-back</option>
-                <option value="loop">Loop</option>
-            </select>
+            <p>{{trail.routeType}}</p>
         </label>
         <label>Comments:
-            <br><textarea name="comments" cols="30" rows="10">{{edit.comments}}</textarea>
+            <p>{{trail.comments}}</p>
         </label>
-        <input type="submit" value="Update" class="btn">
-        {% if hike.user_id == session.user_id %}
-        <td><a href="/edit/trail/{{hike.id}}">Edit this Trail</a></td>
-        <td><a href="/destroy/trail/{{hike.id}}">Remove Trail</a></td>
+        {% if trail.user_id == session.user_id %}
+        <td><a href="/edit/trail/{{trail.id}}">Edit this Trail</a></td>
+        <td><a href="/destroy/trail/{{trail.id}}">Remove Trail</a></td>
         {% endif %}
-</body>
-</html>
+    {% endblock %}

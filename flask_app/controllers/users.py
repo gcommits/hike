@@ -36,7 +36,6 @@ def loginUser():
 @app.route('/login',methods=['POST'])
 def login():
     user = User.getEmail(request.form)
-
     if not user:
         flash("Invalid Email","login")
         return redirect('/')
