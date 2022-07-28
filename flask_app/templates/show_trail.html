@@ -21,67 +21,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for hike in trails %}
                     <tr>
-                        <td scope="row">{{ hike.id }}</td>
-                        <td>{{ hike.name }}</td>
-                        <td>{{ hike.img }}</td>
-                        <td>{{ hike.location }}</td>
-                        <td>{{ hike.difficulty }}</td>
-                        <td>{{ hike.rating }}</td>
-                        <td>{{ hike.dateCompleted.strftime('%Y-%m-%d') }}</td>
-                        <td>{{ hike.elevationGain }}</td>
-                        <td>{{ hike.length }}</td>
-                        <td>{{ hike.routeType }}</td>
-                        <td>{{ hike.comments }}</td>
-                        <td><a href="/trail/{{hike.id}}" class="btn">View</a></td>
-                        {% if hike.user_id == session.user_id %}
+                        <td scope="row">{{ trail.id }}</td>
+                        <td>{{trail.name}}</td>
+                        <td>{{ trail.img }}</td>
+                        <td>{{ trail.location }}</td>
+                        <td>{{ trail.difficulty }}</td>
+                        <td>{{ trail.rating }}</td>
+                        <td>{{ trail.dateCompleted.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ trail.elevationGain }}</td>
+                        <td>{{ trail.length }}</td>
+                        <td>{{ trail.routeType }}</td>
+                        <td>{{ trail.comments }}</td>
+                        <td><a href="/trail/{{trail.id}}" class="btn">View</a></td>
+                        {% if trail.user_id == session.user_id %}
                         <td><a href="/edit/trail/{{hike.id}}" class="btn">Update</a></td>
                         <td><a href="/destroy/trail/{{hike.id}}" class="btn">Delete</a></td>
                         {% endif %}
                     </tr>
-                    {% endfor %}
                 </tbody>
             </table>
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-4">
-            <input type="hidden" name="id" value="{{trail.id}}">
-                    <label>Trail Name:
-                        <p>{{trail.name}}</p>
-                    </label>
-                    <label>Image URL:
-                        <p>{{trail.img}}</p>
-                    </label>
-                    <label>Location:
-                        <p>{{trail.location}}</p>
-                    </label>
-                    <label>Difficulty:
-                        <p>{{trail.difficulty}}</p>
-                    </label>
-                    <label>Rating:
-                        <p>{{trail.rating}}</p>
-                    </label>
-                    <label>Date Completed:
-                        <p>{{trail.dateCompleted.strftime('%Y-%m-%d')}}</p>
-                    </label>
-                    <label>Elevation Gain:
-                        <p>{{trail.elevationGain}}</p>
-                    </label>
-                    <label>Length:
-                        <p>{{trail.length}}</p>
-                    </label>
-                    <label>Route Type:
-                        <p>{{trail.routeType}}</p>
-                    </label>
-                    <label>Comments:
-                        <p>{{trail.comments}}</p>
-                    </label>
-                    {% if trail.user_id == session.user_id %}
-                    <td><a href="/edit/trail/{{trail.id}}">Edit this Trail</a></td>
-                    <td><a href="/destroy/trail/{{trail.id}}">Remove Trail</a></td>
-                    {% endif %}
         </div>
     </div>
     {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="row">
-        <div class="col-4">
+    <div class="row mt-5">
+        <div class="col-8">
             <h1>Edit {{edit.name}}</h1>
             <form action="/update/trail" method="post">
                 <input type="hidden" name="id" value="{{edit.id}}">
@@ -43,9 +43,8 @@
                 <label>Comments:
                     <br><textarea name="comments" cols="30" rows="10">{{edit.comments}}</textarea>
                 </label>
-                <input type="submit" value="Update" class="btn">
+                <input type="submit" value="Update" class="btn btn-primary">
             </form>
         </div>
     </div>
-   
     {% endblock %}
