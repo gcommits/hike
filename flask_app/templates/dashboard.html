@@ -3,15 +3,22 @@
 <div class="row mt-5">
     <div class="col-4">
         <h3>All Hikes</h3>
-        <table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td></td>
+                    <td>Location:</td>
+                    <td>Actions:</td>
+                </tr>
+            </thead>
             {% for hike in trail %}
             <tr>
                 <td>{{ hike.img }}</td>
                 <td>{{ hike.name }}</td>
-                <td><a href="/trail/{{hike.id}}">View</a></td>
+                <td><a href="/trail/{{hike.id}}" class="btn">View</a></td>
                 {% if hike.user_id == session.user_id %}
-                <td><a href="/edit/trail/{{hike.id}}">Update</a></td>
-                <td><a href="/destroy/trail/{{hike.id}}">Delete</a></td>
+                <td><a href="/edit/trail/{{hike.id}}" class="btn">Update</a></td>
+                <td><a href="/destroy/trail/{{hike.id}}" class="btn">Delete</a></td>
                 {% endif %}
             </tr>
             {% endfor %}
