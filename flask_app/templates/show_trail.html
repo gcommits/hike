@@ -17,7 +17,6 @@
                         <th scope="col">Length</th>
                         <th scope="col">Route Type</th>
                         <th scope="col">Comments</th>
-                        <th scope="col">Actions</th>
                         {% if trail.user_id == session.user_id %}
                         <th scope="col">Update</th>
                         <th scope="col">Delete</th>
@@ -28,7 +27,7 @@
                     <tr>
                         <td scope="row">{{ trail.id }}</td>
                         <td>{{trail.name}}</td>
-                        <td><img src="{{trail.img}}" width="50" height="50"></td>
+                        <td><img src="{{trail.img}}" width="200"></td>
                         <td>{{ trail.location }}</td>
                         <td>{{ trail.difficulty }}</td>
                         <td>{{ trail.rating }}</td>
@@ -37,7 +36,6 @@
                         <td>{{ trail.length }}</td>
                         <td>{{ trail.routeType }}</td>
                         <td>{{ trail.comments }}</td>
-                        <td><a href="/trail/{{trail.id}}" class="btn">View</a></td>
                         {% if trail.user_id == session.user_id %}
                         <td><a href="/edit/trail/{{trail.id}}" class="btn">Update</a></td>
                         <td><a href="/destroy/trail/{{trail.id}}" class="btn">Delete</a></td>

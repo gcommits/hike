@@ -11,12 +11,9 @@
                     <th scope="col">Rating</th>
                     <th scope="col">Difficulty</th>
                     <th scope="col">Actions</th>
-                    {% for hike in trail %}
-                    {% if hike.user_id == session.user_id %}
                     <th scope="col">Update</th>
                     <th scope="col">Delete</th>
-                    {% endif %}
-                    {% endfor %}
+                    
                 </tr>
             </thead>
             <tbody>
