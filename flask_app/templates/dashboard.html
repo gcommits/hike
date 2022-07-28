@@ -1,27 +1,33 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="row mt-5">
-    <div class="col-4">
+    <div class="col-6 m-auto">
         <h3>All Hikes</h3>
-        <table class="table">
+        <table class="table table-striped table-hover m-2">
             <thead>
-                <tr>
-                    <td></td>
-                    <td>Location:</td>
-                    <td>Actions:</td>
+                <tr class="table-primary">
+                    <th scope="col">#</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Difficulty</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
-            {% for hike in trail %}
-            <tr>
-                <td>{{ hike.img }}</td>
-                <td>{{ hike.name }}</td>
-                <td><a href="/trail/{{hike.id}}" class="btn">View</a></td>
-                {% if hike.user_id == session.user_id %}
-                <td><a href="/edit/trail/{{hike.id}}" class="btn">Update</a></td>
-                <td><a href="/destroy/trail/{{hike.id}}" class="btn">Delete</a></td>
-                {% endif %}
-            </tr>
-            {% endfor %}
+            <tbody>
+                {% for hike in trail %}
+                <tr>
+                    <td scope="row">{{ hike.id }}</td>
+                    <td>{{ hike.name }}</td>
+                    <td>{{ hike.rating }}</td>
+                    <td>{{ hike.difficulty }}</td>
+                    <td><a href="/trail/{{hike.id}}" class="btn">View</a></td>
+                    {% if hike.user_id == session.user_id %}
+                    <td><a href="/edit/trail/{{hike.id}}" class="btn">Update</a></td>
+                    <td><a href="/destroy/trail/{{hike.id}}" class="btn">Delete</a></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
 </div>

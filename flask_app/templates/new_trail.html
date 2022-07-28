@@ -1,49 +1,57 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="row mt-5">
-    <div class="col-4">
-         <form action="/create/trail" method="post">
-            <label>Image URL:
-                <input type="file" name="img">
-            </label>
-            <label>Trail Name:
+<div class="row mt-5 g-3">
+    <h1>New Trail</h1>
+        <form action="/create/trail" method="post">
+            <div class="mb-3 col-md-6">
+                <label class="form-label" for="trailName">Trail Name:</label>
                 <input type="text" name="name">
-            </label>
-            <label>Location:
+            </div>
+            <div class="mb-3 col-md-6">
+                <label class="form-label" for="inputImage">Image:</label>
+                <input type="file" name="img">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label class="form-label" for="trailName">Location:</label>
                 <input type="text" name="location">
-            </label>
-            <label>Difficulty:
+            </div>
+            <div class="mb-3 col-md-6">
+                <label class="form-label" for="difficulty">Difficulty:</label>
                 <select name="difficulty">
                     <option value="Easy">Easy</option>
                     <option value="Moderate">Moderate</option>
                     <option value="Hard">Hard</option>
                 </select>
-            </label>
-            <label>Rating:
+            </div>
+            <div class="mb-3 col-md-6">
+                <label class="form-label" for="rating">Rating:</label>
                 <input type="number" name="rating" min="1" max="10">
-            </label>
-            <label>Date Completed:
+            </div>
+            <div class="mb-3 col-md-6">
+                <label class="form-label" for="rating">Date Completed:</label>
                 <input type="date" name="dateCompleted">
-            </label>
-            <label>Elevation Gain:
+            </div>
+            <div class="mb-3 col-md-6">
+                <label class="form-label" for="elevationGain">Elevation Gain:</label>
                 <input type="number" name="elevationGain">
-            </label>
-            <label>Length:
+            </div>
+            <div class="mb-3 col-md-6">
+                <label class="form-label" for="length">Length:</label>
                 <input type="number" name="length">
-            </label>
-            <label>Route Type:
+            </div>
+            <div class="mb-3 col-md-6">
+                <label class="form-label" for="length">Route Type:</label>
                 <select name="routeType">
                     <option value="pointToPoint">Point-to-point</option>
                     <option value="outAndBack">Out-and-back</option>
                     <option value="loop">Loop</option>
                 </select>
-            </label>
-            <label>Comments:
-                <textarea name="comments" cols="30" rows="10"></textarea>
-            </label>
-            <input type="submit" value="Add Hike">
+            </div>
+            <div class="mb-3 col-md-6">
+                <label class="form-label" for="comments">Comments:</label>
+                <textarea name="comments" cols="30" rows="2"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-    </div>
 </div>
-       
 {% endblock content %}
