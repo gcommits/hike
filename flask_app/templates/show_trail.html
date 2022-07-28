@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
     {% block content %}
     <div class="row mt-5">
-        <div class="col-6 m-auto">
+        <div class="col-10 m-auto">
             <h3>Show Trail</h3>
             <table class="table table-striped table-hover m-2">
                 <thead>
@@ -18,13 +18,17 @@
                         <th scope="col">Route Type</th>
                         <th scope="col">Comments</th>
                         <th scope="col">Actions</th>
+                        {% if trail.user_id == session.user_id %}
+                        <th scope="col">Update</th>
+                        <th scope="col">Delete</th>
+                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td scope="row">{{ trail.id }}</td>
                         <td>{{trail.name}}</td>
-                        <td>{{ trail.img }}</td>
+                        <td><img src="{{trail.img}}"></td>
                         <td>{{ trail.location }}</td>
                         <td>{{ trail.difficulty }}</td>
                         <td>{{ trail.rating }}</td>
@@ -35,8 +39,8 @@
                         <td>{{ trail.comments }}</td>
                         <td><a href="/trail/{{trail.id}}" class="btn">View</a></td>
                         {% if trail.user_id == session.user_id %}
-                        <td><a href="/edit/trail/{{hike.id}}" class="btn">Update</a></td>
-                        <td><a href="/destroy/trail/{{hike.id}}" class="btn">Delete</a></td>
+                        <td><a href="/edit/trail/{{trail.id}}" class="btn">Update</a></td>
+                        <td><a href="/destroy/trail/{{trail.id}}" class="btn">Delete</a></td>
                         {% endif %}
                     </tr>
                 </tbody>
